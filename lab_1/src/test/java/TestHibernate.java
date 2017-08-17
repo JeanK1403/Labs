@@ -62,7 +62,10 @@ public class TestHibernate {
         
         //Get:
 //        Person person = (Person) session.get(Person.class, new Integer(4));
-        List<Person> list = session.createCriteria(Person.class).list();
+        
+        //Get all      
+//        List<Person> list = session.createCriteria(Person.class).list();
+        List<Person> list = session.createQuery("from Person").list();
         
         for(Person person: list){
             System.out.println("Name: " + person.getName());
