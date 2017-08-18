@@ -11,53 +11,66 @@ import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author jecas
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestHibernate {
+    
+    private static Session session;
     
     public TestHibernate() {
     }
     
     @Before
     public void setUp() {
+        session = HibernateUtil.getSessionFactory().openSession();
+    }
+    
+    @AfterClass
+    public static void tearDown() {
+        session.close();
+        HibernateUtil.shutdown();
     }
     
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-//    @Test
-//    public void testSave() {
-//         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//         Session session = sessionFactory.openSession();
-//         session.beginTransaction();
-//         
-//         PassportDetail passportDetail = new PassportDetail();
-//         passportDetail.setPassportno("pass_1");
-//         
-//         session.save(passportDetail);
-//         System.out.println("Passport saved, id: " + passportDetail.getId());
-//         
-//         Person person = new Person();
-//         person.setName("Person_2");
-//         person.setPassport_detail_id(passportDetail);
-//         
-//         session.save(person);
-//         System.out.println("Person saved, id: " + person.getId());
-//         
-//         session.getTransaction().commit();
-//         session.close();
-//         HibernateUtil.shutdown();
-//    }
+    @Test
+    public void test1Save() {
+         //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+         //Session session = sessionFactory.openSession();
+         session.beginTransaction();
+         
+         PassportDetail passportDetail = new PassportDetail();
+         passportDetail.setPassportno("pass_1");
+         
+         session.save(passportDetail);
+         System.out.println("Passport saved, id: " + passportDetail.getId());
+         
+         Person person = new Person();
+         person.setName("Person_2");
+         person.setPassport_detail_id(passportDetail);
+         
+         session.save(person);
+         System.out.println("Person saved, id: " + person.getId());
+         
+         session.getTransaction().commit();
+         //session.close();
+         //HibernateUtil.shutdown();
+    }
      
     @Test
-    public void testList(){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
+    public void test2List(){
+//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+//        Session session = sessionFactory.openSession();
         session.beginTransaction();
         
         //Get:
@@ -73,7 +86,7 @@ public class TestHibernate {
         }
         
         session.getTransaction().commit();
-        session.close();
-        HibernateUtil.shutdown();
+//        session.close();
+//        HibernateUtil.shutdown();
     }
 }
