@@ -40,20 +40,20 @@ public class TestHibernate {
         context.close();
     }
 
-//    @Test
-//    public void test1Save() {
-//        PassportDetail passportDetail = new PassportDetail(0, "pass1");
-//        passportDetailService.add(passportDetail);
-//        personService.add(new Person(0, "Andrea", passportDetail));
-//        passportDetail.setId(1);
-//        passportDetail.setPassportno("pass2");
-//        passportDetailService.add(passportDetail);
-//        personService.add(new Person(1, "Daniela", passportDetail));
-//        passportDetail.setId(2);
-//        passportDetail.setPassportno("pass3");
-//        passportDetailService.add(passportDetail);
-//        personService.add(new Person(2, "Jose", passportDetail));
-//    }
+    @Test
+    public void test1Save() {
+        PassportDetail passportDetail = new PassportDetail(0, "pass1");
+        passportDetailService.add(passportDetail);
+        personService.add(new Person(0, "Andrea", passportDetail));
+        passportDetail.setId(1);
+        passportDetail.setPassportno("pass2");
+        passportDetailService.add(passportDetail);
+        personService.add(new Person(1, "Daniela", passportDetail));
+        passportDetail.setId(2);
+        passportDetail.setPassportno("pass3");
+        passportDetailService.add(passportDetail);
+        personService.add(new Person(2, "Jose", passportDetail));
+    }
     
     @Test
     public void test2List() {
